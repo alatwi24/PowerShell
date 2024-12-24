@@ -1,0 +1,13 @@
+#script to extracts wsp files for SharePoint server
+
+Add-PSSnapin Microsoft.SharePoint.PowerShell
+
+$dirName = "c:\yourPATH"
+foreach ($solution in Get-SPSolution)
+{
+    $id = $Solution.SolutionID
+    $title = $Solution.Name
+    $filename = $Solution.SolutionFile.Name
+    $solution.SolutionFile.SaveAs("$dirName\$filename")
+} 
+Write-Host "All solutions have been exported to $dirName"
